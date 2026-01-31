@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtConstant } from './auth/constant';
+import { CrudModule } from './crud/crud.module';
 
 
 @Module({
@@ -9,7 +10,7 @@ import { JwtConstant } from './auth/constant';
     global: true,
     secret: JwtConstant.secret,
     signOptions: { expiresIn: '1d' },
-  })],
+  }), CrudModule],
   controllers: [],
   providers: [],
 })

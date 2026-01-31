@@ -1,5 +1,5 @@
 import { INestApplication,Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../../generated/prisma/client';
 import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 
 @Injectable()
@@ -18,7 +18,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
   }
 
   async enableShutdownHooks( app: INestApplication) {   
-    this.$on('beforeExit', async () => {
+    process.on('beforeExit', async () => {
       await app.close();
     });
   }
